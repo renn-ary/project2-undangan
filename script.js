@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
         path: 'Assets/Lottie/love.json'
     });
 
-    // Change Lottie color to Maroon
-    lottieContainer.style.filter = 'invert(11%) sepia(91%) saturate(5437%) hue-rotate(352deg) brightness(91%) contrast(116%)';
+    // Change Lottie color to Sage Green
+    lottieContainer.style.filter = 'invert(35%) sepia(20%) saturate(890%) hue-rotate(60deg) brightness(95%) contrast(90%)';
 
     window.addEventListener('load', function() {
         setTimeout(() => {
