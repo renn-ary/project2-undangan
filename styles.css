@@ -41,7 +41,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #700000;
+    background: #141711;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,39 +67,11 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 15px;
+    padding: 20px;
     position: relative;
     overflow: hidden;
-    background: #ffffff;
-}
-
-.flower-decor {
-    position: absolute;
-    z-index: 5;
-    pointer-events: none;
-    width: 40%;
-    max-width: 250px;
-}
-
-.flower-decor.top-right {
-    top: -20px;
-    right: -20px;
-}
-
-.flower-decor.bottom-left {
-    bottom: -20px;
-    left: -20px;
-}
-
-.flower-img {
-    width: 100%;
-    height: auto;
-    animation: heartbeat 3s ease-in-out infinite;
-}
-
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    background: url('Assets/Image/backgroundcover.jpg') no-repeat center center;
+    background-size: cover;
 }
 
 .cover-content {
@@ -110,120 +82,83 @@ body {
     z-index: 2;
     width: 100%;
     height: 100%;
-    justify-content: center;
-}
-
-.cover-pill {
-    background: #700000;
-    border-radius: 200px;
-    padding: 60px 20px;
-    width: 100%;
-    max-width: 380px;
-    height: 94vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    position: relative;
-    animation: zoomIn 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes zoomIn {
-    from { transform: scale(0.9); opacity: 0; -webkit-transform: scale(0.9); -moz-transform: scale(0.9); -ms-transform: scale(0.9); -o-transform: scale(0.9); }
-    to { transform: scale(1); opacity: 1; }
+    justify-content: flex-start;
+    padding: 80px 0 60px;
 }
 
 .cover-label {
     font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    letter-spacing: 4px;
+    font-size: 26px;
+    font-weight: 500;
     color: #ffffff;
-    margin-bottom: 0;
-}
-
-.cover-couple-photos {
-    margin: 20px 0;
-}
-
-.photo-single {
-    width: 144px; /* 160 * 0.9 */
-    height: 198px; /* 220 * 0.9 */
-    border-radius: 100px;
-    object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    letter-spacing: 1px;
 }
 
 .cover-names {
     font-family: 'Great Vibes', cursive;
-    font-size: 32px;
+    font-size: 42px;
     font-weight: 400;
     color: #ffffff;
-    margin-bottom: 5px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    margin-bottom: 30px;
     line-height: 1.2;
 }
 
 .cover-date {
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
+    font-size: 24px;
+    font-weight: 400;
     color: #ffffff;
-    letter-spacing: 3px;
-    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 120px;
 }
 
 .guest-info {
-    margin-bottom: 30px;
+    margin-top: auto;
+    margin-bottom: 25px;
 }
 
 .cover-to {
-    font-size: 12px;
+    font-size: 16px;
     color: #ffffff;
-    margin-bottom: 2px;
-    opacity: 0.9;
-    font-weight: 300;
+    margin-bottom: 0px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
 }
 
 .cover-guest {
-    font-size: 12px;
+    font-size: 16px;
     color: #ffffff;
-    opacity: 0.9;
-    margin-bottom: 10px;
-    font-weight: 300;
-}
-
-.guest-line {
-    color: #ffffff;
-    font-size: 10px;
-    margin-bottom: 10px;
-    letter-spacing: -1px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
 }
 
 .cover-guest-name {
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 400;
     color: #ffffff;
-    margin-bottom: 0;
-    min-width: 150px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
 }
 
 .btn-open {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    background: #ffffff;
-    color: #700000;
+    background: #fff;
+    color: #141711;
     border: none;
-    padding: 12px 35px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 500;
+    padding: 14px 70px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .btn-open span {
