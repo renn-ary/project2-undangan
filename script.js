@@ -14,19 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Change Lottie color to Sage Green
     lottieContainer.style.filter = 'invert(35%) sepia(20%) saturate(890%) hue-rotate(60deg) brightness(95%) contrast(90%)';
 
-    // Preload all images and audio for smooth performance
+    // Preload ONLY critical assets (for initial page load)
     const assetsToPreload = [
-        'Assets/Image/1.png',
-        'Assets/Image/2.png',
-        'Assets/Image/3.png',
-        'Assets/Image/5.png',
-        'Assets/Image/backgroundcover.jpg',
-        'Assets/Image/bg.png',
-        'Assets/Image/bg.jfif',
-        'Assets/Image/fotomempelai.jpg',
-        'Assets/Image/fotomempelaiwanita.jpg',
-        'Assets/Image/fotomempelaipria.jpg',
-        'Assets/Audio/backsound.mp3'
+        'Assets/Image/backgroundcover.jpg' // Only background cover
     ];
 
     let loadedCount = 0;
