@@ -51,14 +51,22 @@ document.addEventListener('DOMContentLoaded', function() {
         // Hide loader when all assets are preloaded OR after 3 seconds max
         if (loadedCount >= totalAssets) {
             setTimeout(() => {
-                loader.classList.add('loaded');
+                showCoverAndHideLoader();
             }, 500);
         }
     }
 
+    function showCoverAndHideLoader() {
+        loader.classList.add('loaded');
+        // Show cover page after loader starts hiding
+        setTimeout(() => {
+            cover.classList.add('show');
+        }, 300);
+    }
+
     // Fallback: Hide loader after 4 seconds max
     setTimeout(() => {
-        loader.classList.add('loaded');
+        showCoverAndHideLoader();
     }, 4000);
 
     const cover = document.getElementById('cover');
