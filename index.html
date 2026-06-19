@@ -29,7 +29,7 @@
     <link rel="icon" href="Assets/Image/ikonwsweb.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Tangerine:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
@@ -43,7 +43,12 @@
         <source src="Assets/Audio/backsound.mp3" type="audio/mp3">
     </audio>
 
+    <img src="./Assets/Image/1.png" class="floating-leaf leaf-1" alt="Leaf 1">
+    <img src="./Assets/Image/2.png" class="floating-leaf leaf-2" alt="Leaf 2">
+    <img src="./Assets/Image/3.png" class="floating-leaf leaf-4" alt="Leaf 4">
+    <img src="./Assets/Image/5.png" class="floating-leaf leaf-3" alt="Leaf 3">
     <section id="cover" class="cover-page">
+        <div class="swipe-overlay" id="swipeOverlay"></div>
         <div class="cover-content">
             <h1 class="cover-label">The Wedding Of</h1>
             <h2 class="cover-names">Bulan & Bintang</h2>
@@ -52,12 +57,17 @@
             <div class="guest-info">
                 <p class="cover-to">Kepada Yth.</p>
                 <p class="cover-guest">Bapak/Ibu/Saudara/i</p>
-                <p class="cover-guest-name" id="guestName">................................</p>
+                <div class="cover-guest-name-container">
+                    <p class="cover-guest-name" id="guestName">...............</p>
+                </div>
             </div>
 
             <button class="btn-open" id="openBtn">
-                Buka Undangan
+                Swipe right to open
             </button>
+            <div class="swipe-hint">
+                <span class="arrow">→</span>
+            </div>
         </div>
     </section>
 
@@ -95,16 +105,13 @@
     <main id="mainContent" class="main-content hidden">
 
         <section id="countdown" class="section section-countdown">
-            <div class="flower-countdown-top">
-                <img src="Assets/Image/flowercoveratas.svg" alt="Flower" class="flower-img-countdown">
-            </div>
             <div class="countdown-content">
                 <p class="section-label scroll-animate">The Wedding Of</p>
                 <div class="couple-photos-countdown scroll-animate">
                     <img src="Assets/Image/fotomempelai.jpg" alt="Mempelai" class="photo-countdown">
                 </div>
                 <h2 class="couple-names scroll-animate">Bulan & Bintang</h2>
-                <p class="event-date-main scroll-animate">06 April 2026</p>
+                <p class="event-date-main scroll-animate">16 Juli, 2026</p>
                 <p class="invitation-text scroll-animate">Kami mohon kehadirannya untuk menghadiri acara pernikahan putra-putri kami</p>
                 <div class="countdown-timer scroll-animate" id="countdownTimer">
                     <div class="time-box">
@@ -187,8 +194,6 @@
 
             <div class="event-pill-wrapper">
                 <div class="event-pill">
-                <!-- Dekorasi Bunga -->
-                <img src="Assets/Image/dekorasifloweratas.svg" alt="Flower Decoration" class="event-flower-decor">
                 
                 <!-- Akad Nikah -->
                 <div class="event-item">
@@ -200,10 +205,10 @@
                             </svg>
                         </div>
                         <h3 class="event-title-new scroll-animate">Akad Nikah</h3>
-                        <p class="event-month-new scroll-animate">APRIL</p>
+                        <p class="event-month-new scroll-animate">JULI</p>
                         <div class="event-date-row scroll-animate">
                             <div class="event-side">SENIN</div>
-                            <div class="event-day-counter" data-target="06">0</div>
+                            <div class="event-day-counter" data-target="16">0</div>
                             <div class="event-side">2026</div>
                         </div>
                         <p class="event-time-new scroll-animate">Pukul 10.00 WIB</p>
@@ -224,10 +229,10 @@
                             </svg>
                         </div>
                         <h3 class="event-title-new scroll-animate">Resepsi</h3>
-                        <p class="event-month-new scroll-animate">APRIL</p>
+                        <p class="event-month-new scroll-animate">JULI</p>
                         <div class="event-date-row scroll-animate">
                             <div class="event-side">SENIN</div>
-                            <div class="event-day-counter" data-target="06">0</div>
+                            <div class="event-day-counter" data-target="18">0</div>
                             <div class="event-side">2026</div>
                         </div>
                         <p class="event-time-new scroll-animate">Pukul 11.00 - 17.00 WIB</p>
@@ -246,7 +251,11 @@
 
         <section id="gallery" class="section section-gallery">
 
-            <h2 class="section-heading scroll-animate">Gallery</h2>
+            <div class="section-heading-container scroll-animate">
+                <div class="section-heading-circle-left"></div>
+                <h2 class="section-heading">Gallery</h2>
+                <div class="section-heading-circle-right"></div>
+            </div>
             <div class="gallery-grid">
                 <img src="Assets/Image/fotomempelaipria.jpg" alt="Gallery 1" class="gallery-img scroll-animate">
                 <img src="Assets/Image/fotomempelaiwanita.jpg" alt="Gallery 2" class="gallery-img scroll-animate">
@@ -259,7 +268,11 @@
 
         <section id="story" class="section section-story">
 
-            <h2 class="section-heading scroll-animate">Love Story</h2>
+            <div class="section-heading-container scroll-animate">
+                <div class="section-heading-circle-left"></div>
+                <h2 class="section-heading">Love Story</h2>
+                <div class="section-heading-circle-right"></div>
+            </div>
             <div class="timeline">
                 <div class="timeline-item scroll-animate">
                     <div class="timeline-dot"></div>
@@ -336,7 +349,11 @@
 
         <section id="rsvp" class="section section-rsvp">
 
-            <h2 class="section-heading scroll-animate">RSVP</h2>
+            <div class="section-heading-container scroll-animate">
+                <div class="section-heading-circle-left"></div>
+                <h2 class="section-heading">RSVP</h2>
+                <div class="section-heading-circle-right"></div>
+            </div>
             <p class="rsvp-text scroll-animate">Mohon konfirmasi kehadiran Anda:</p>
             <form class="rsvp-form" id="rsvpForm">
                 <div class="form-group scroll-animate">
@@ -370,7 +387,11 @@
 
         <section id="wishes" class="section section-wishes">
 
-            <h2 class="section-heading scroll-animate">Ucapan & Doa</h2>
+            <div class="section-heading-container scroll-animate">
+                <div class="section-heading-circle-left"></div>
+                <h2 class="section-heading">Ucapan & Doa</h2>
+                <div class="section-heading-circle-right"></div>
+            </div>
             <p class="wishes-text scroll-animate">Tuliskan ucapan dan doa terbaik Anda untuk kedua mempelai</p>
             <form class="wishes-form" id="wishesForm">
                 <div class="form-group scroll-animate">
@@ -415,9 +436,6 @@
         </section>
 
         <section id="closing" class="section section-closing">
-            <!-- Dekorasi Bunga -->
-            <img src="Assets/Image/flowercoveratas.svg" alt="Flower Decoration Top" class="closing-flower-top">
-
             <div class="closing-content">
                 <div class="closing-photo-wrapper scroll-animate">
                     <img src="Assets/Image/fotomempelai.jpg" alt="Mempelai" class="closing-photo">

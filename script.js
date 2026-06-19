@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Lottie Loader Logic
+    // 1. Lottie Loader Logic & Preload All Assets
     const loader = document.getElementById('loader');
     const lottieContainer = document.getElementById('lottie-container');
     
@@ -14,11 +14,52 @@ document.addEventListener('DOMContentLoaded', function() {
     // Change Lottie color to Sage Green
     lottieContainer.style.filter = 'invert(35%) sepia(20%) saturate(890%) hue-rotate(60deg) brightness(95%) contrast(90%)';
 
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            loader.classList.add('loaded');
-        }, 1000);
+    // Preload all images and audio for smooth performance
+    const assetsToPreload = [
+        'Assets/Image/1.png',
+        'Assets/Image/2.png',
+        'Assets/Image/3.png',
+        'Assets/Image/5.png',
+        'Assets/Image/backgroundcover.jpg',
+        'Assets/Image/bg.png',
+        'Assets/Image/bg.jfif',
+        'Assets/Image/fotomempelai.jpg',
+        'Assets/Image/fotomempelaiwanita.jpg',
+        'Assets/Image/fotomempelaipria.jpg',
+        'Assets/Audio/backsound.mp3'
+    ];
+
+    let loadedCount = 0;
+    const totalAssets = assetsToPreload.length;
+
+    assetsToPreload.forEach(src => {
+        if (src.endsWith('.mp3')) {
+            const audio = new Audio();
+            audio.addEventListener('canplaythrough', onAssetLoad);
+            audio.addEventListener('error', onAssetLoad); // Count errors as loaded
+            audio.src = src;
+        } else {
+            const img = new Image();
+            img.addEventListener('load', onAssetLoad);
+            img.addEventListener('error', onAssetLoad); // Count errors as loaded
+            img.src = src;
+        }
     });
+
+    function onAssetLoad() {
+        loadedCount++;
+        // Hide loader when all assets are preloaded OR after 3 seconds max
+        if (loadedCount >= totalAssets) {
+            setTimeout(() => {
+                loader.classList.add('loaded');
+            }, 500);
+        }
+    }
+
+    // Fallback: Hide loader after 4 seconds max
+    setTimeout(() => {
+        loader.classList.add('loaded');
+    }, 4000);
 
     const cover = document.getElementById('cover');
     const mainContent = document.getElementById('mainContent');
@@ -75,16 +116,22 @@ document.addEventListener('DOMContentLoaded', function() {
         guestNameEl.textContent = guestName.replace(/\+/g, ' ');
     }
 
-    // 2. Fade Transition for Buka Undangan
-    openBtn.addEventListener('click', function() {
+    // Function to open invitation (slide left)
+    function openInvitation() {
         const savedStatus = localStorage.getItem('musicStatus');
         if (savedStatus !== 'paused') {
             bgMusic.play().catch(e => console.log('Audio autoplay blocked'));
         }
         
-        cover.style.transition = 'opacity 1s ease, transform 1s ease';
+        // Show floating leaves
+        const leaves = document.querySelectorAll('.floating-leaf');
+        leaves.forEach(leaf => {
+            leaf.style.display = 'block';
+            leaf.style.opacity = '1';
+        });
+        
+        cover.style.transform = 'translateX(-100%)';
         cover.style.opacity = '0';
-        cover.style.transform = 'scale(1.05)';
         cover.style.pointerEvents = 'none';
         
         setTimeout(() => {
@@ -111,7 +158,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 const firstElements = countdownSection.querySelectorAll('.scroll-animate');
                 firstElements.forEach(el => el.classList.add('visible'));
             }, 50);
-        }, 1000);
+        }, 600);
+    }
+
+    // Open invitation on button click
+    openBtn.addEventListener('click', openInvitation);
+
+    const swipeOverlay = document.getElementById('swipeOverlay');
+    
+    // Touch swipe RIGHT
+    let touchStartX = null;
+    
+    swipeOverlay.addEventListener('touchstart', function(e) {
+        if (cover.classList.contains('hidden')) return;
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    
+    swipeOverlay.addEventListener('touchend', function(e) {
+        if (cover.classList.contains('hidden') || touchStartX === null) return;
+        const touchEndX = e.changedTouches[0].clientX;
+        if (touchEndX - touchStartX > 30) { // Swipe to the right
+            openInvitation();
+        }
+        touchStartX = null;
+    }, { passive: true });
+    
+    // Mouse swipe for desktop
+    let mouseStartX = null;
+    
+    swipeOverlay.addEventListener('mousedown', function(e) {
+        if (cover.classList.contains('hidden')) return;
+        mouseStartX = e.clientX;
+    });
+    
+    swipeOverlay.addEventListener('mouseup', function(e) {
+        if (cover.classList.contains('hidden') || mouseStartX === null) return;
+        if (e.clientX - mouseStartX > 30) { // Swipe to the right
+            openInvitation();
+        }
+        mouseStartX = null;
     });
 
     // 3. Music Auto-Pause/Play on Visibility Change
@@ -283,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.event-day-counter').forEach(el => counterObserver.observe(el));
 
     // 8. Countdown Timer
-    const weddingDate = new Date('2026-04-06T10:00:00').getTime();
+    const weddingDate = new Date('2026-07-16T10:00:00').getTime();
     function updateCountdown() {
         const now = new Date().getTime();
         const distance = weddingDate - now;
